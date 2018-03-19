@@ -6,18 +6,18 @@
     <style>
       html, body { margin: 0; padding: 0; background: black; user-select: none; }
       body * { user-select: none;}
-      .img-wrapper { height: 100vh; width: 100vw!important; text-align: center; user-select: none; }
+      .img-wrapper { height: 100vh; width: 100vw!important; text-align: center; user-select: none; display: flex!important; align-items: center; }
       .img-wrapper img { width: auto; height: auto; max-height: 100%; max-width: 100%; margin: 0 auto; user-select: none; }
       .nav { position: absolute; width: 100%; bottom: 0; text-align: center; }
       .nav-item { background: #424242; color: white; padding: 5px 10px; display: inline-block; font-family: Arial; text-decoration: none;}
+      .slick-arrow { position: absolute; top: 0; bottom: 0; width: 10%; z-index: 100; }
+      .slick-prev { left: 0; }
+      .slick-next { right: 0; }
+      .slick-track .img-wrapper:last-child { background: #424242; }
     </style>
   </head>
   <body>
     <div class="slick-wrapper"></div>
-    <div class="nav">
-      <a href="#" class="nav-item prev">PREV</a>
-      <a href="#" class="nav-item next">NEXT</a>
-    </div>
   </body>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/latest/slick.min.js"></script>
@@ -38,25 +38,30 @@
     var step;
     var name = getUrlParameter('name');
     var vol = getUrlParameter('vol');
-    console.log('name= '+name+' | vol= '+vol);
-    for (step = 1; step < 60; step++) {
+    step = 1;
+    while (step < 60) {
       imgsrc = 'https://readcomics.io/images/manga/'+name+'/'+vol+'/'+step+'.jpg';
-      $(".slick-wrapper").append('<div class="img-wrapper"><img src="'+imgsrc+'"/></div>');
-      $("img").on('error', function() {
-        $(this).remove();
+      $(".slick-wrapper").append('<a class="img-wrapper"><img src="'+imgsrc+'"/></a>');
+      $(".img-wrapper img").on('error', function() {
+        $(this).parent().remove();
       });
+      step++;
     }
     var prevVol = parseInt(vol)-1;
     var prevLink = location.protocol + '\/\/' + location.host + location.pathname +'?name='+ name+'&vol='+prevVol;
     var nextVol = parseInt(vol)+1;
     var nextLink = location.protocol + '\/\/' + location.host + location.pathname +'?name='+ name+'&vol='+nextVol;
-    $('.prev').attr('href', prevLink);
-    $('.next').attr('href', nextLink);
     $('.slick-wrapper').slick({
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      arrows: false
+      infinite: false
+      ,lazyLoad: true
+      ,prevArrow: '<div class="slick-prev slick-arrow"></div>'
+      ,nextArrow: '<div class="slick-next slick-arrow"></div>'
+      //arrows: false
     });
+    setTimeout(function(){
+      $('.slick-track .img-wrapper').first().attr('href', prevLink);
+      $('.slick-track .img-wrapper').last().attr('href', nextLink);
+    }, 2000);
   });
   </script>
 </html>
