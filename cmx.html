@@ -32,6 +32,7 @@
       .loader { display: flex; align-items: center; justify-content: center; position: absolute; top: 0; bottom: 0; width: 100%; }
       .togl { text-indent: -9999999999px; text-decoration: none; font-size: 18px; text-align: center; }
       .togl-show { display: flex; background: black; align-items: center; justify-content: center; color: white; font-family: Arial; outline: 2px dashed rgba(255,255,255,0.5); outline-offset: -2px; text-indent: 0; }
+      .show-togls { position: absolute; top: 45%; bottom: 45%; left: 45%; right: 45%; z-index:102; }
 /*
       .slick-dots { position: absolute; bottom: 0; width: 100%; text-align: center; margin: 0; padding: 0;}
       .slick-dots li { display: inline-block; margin: 0; padding: 0; }
@@ -91,7 +92,7 @@
     var prevLink = location.protocol + '\/\/' + location.host + location.pathname +'?name='+ name+'&vol='+prevVol;
     var nextVol = parseInt(vol)+1;
     var nextLink = location.protocol + '\/\/' + location.host + location.pathname +'?name='+ name+'&vol='+nextVol;
-    $('.img-wrapper img').click(function() {
+    $('.show-togls').click(function() {
       $('.togl').toggleClass('togl-show');
     });
     setTimeout(function(){
