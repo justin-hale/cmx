@@ -3,6 +3,8 @@
   <head>
     <title>Comic Viewer</title>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/latest/slick.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css"/>
     <style>
       html, body { margin: 0; padding: 0; background: black; user-select: none; }
       body * { user-select: none;}
@@ -16,6 +18,8 @@
       .slick-track .img-wrapper:last-child { background: white; }
       .issue-browser { position: absolute; bottom: 0; width: 100%; text-align: center; margin: 0; padding: 0; }
       .issue { display: inline-block; width: 49%; height: 50px; margin: 0; padding: 0; }
+      .fa { color: white; }
+      .loader { display: flex; align-items: center; justify-content: center; position: absolute; top: 0; bottom: 0; width: 100%; }
 /*
       .slick-dots { position: absolute; bottom: 0; width: 100%; text-align: center; margin: 0; padding: 0;}
       .slick-dots li { display: inline-block; margin: 0; padding: 0; }
@@ -26,6 +30,9 @@
     </style>
   </head>
   <body>
+    <div class="loader">
+      <i class="fa fa-circle-notch fa-5x fa-spin"></i>
+    </div>
     <div class="slick-wrapper"></div>
     <div class="issue-browser">
       <a class="issue prev"></a>
