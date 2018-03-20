@@ -3,8 +3,11 @@
   <head>
     <title>Comic List</title>
     <style>
-      h1, h2 { font-family: Arial; margin: 30px 5px 10px; }
-      a { background: #424242; color: white; padding: 10px 20px; text-decoration: none; font-family: Arial; margin: 5px; display: inline-block; border-radius: 4px;}
+      h1, h2 { font-family: Arial; margin: 30px 5px 10px; color: #424242; }
+      h2 { border-bottom: 2px solid #424242; }
+      a { display: block; color: black; text-decoration: none; padding: 10px; font-family: Arial; font-size: 16px; text-transform: capitalize; }
+      a:nth-child(even) { background: #EEEEEE; }
+      a:hover { background: #E3F2FD; }
       .input { border: 1px solid #424242; border-radius: 4px 0 0 4px; padding: 10px 20px; font-family: Arial; margin: 5px; margin-right: 0; font-size: 16px; flex: 1 1 auto; }
       .button { background: #424242; padding: 10px 20px 11px; margin: 5px; margin-left: -2px; border-radius: 0 4px 4px 0; border: 0; color: white; font-size: 16px; }
       form { display: flex; width: 100%; align-items: stretch; }
@@ -18,19 +21,33 @@
      </form>
 
     <h2>DC Comics</h2>
-    <a href="cmx.html?name=the-flash-2016">The Flash 2016</a>
-    <a href="cmx.html?name=dark-nights-metal-2017">Dark Knights: Metal 2017</a>
-    <a href="cmx.html?name=teen-titans-2016">Teen Titans 2016</a>
-    <a href="cmx.html?name=titans-2016">Titans 2016</a>
+    <div class="dc-wrapper"></div>
 
     <h2>Marvel</h2>
-    <a href="cmx.html?name=all-new-wolverine-2016">All-New Wolverine 2016</a>
-    <a href="cmx.html?name=spider-man-2016">Spider-Man 2016</a>
-    <a href="cmx.html?name=spider-man-deadpool-2016">Spider-Man/Deadpool 2016</a>
+    <div class="marvel-wrapper"></div>
 
     <h2>Other</h2>
-    <a href="cmx.html?name=saga">Saga</a>
-    <a href="cmx.html?name=the-walking-dead">The Walking Dead</a>
+    <div class="other-wrapper"></div>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+      var dc = ['the-flash-2016', 'dark-nights-metal-2017', 'teen-titans-2016', 'titans-2016', 'supergirl-2016', 'wonder-woman-2016', 'suicide-squad-2016', 'hal-jordan-and-the-green-lantern-corps-2016', 'justice-league-of-america-2017'];
+      var dc = dc.sort();
+      var marvel = ['all-new-wolverine-2016', 'deadpool-2016', 'doctor-strange-2015', 'spider-man-2016', 'spider-man-deadpool-2016', 'daredevil-2016', 'old-man-logan', 'star-wars', 'darth-vader-2017'];
+      var marvel = marvel.sort();
+      var other = ['saga', 'the-walking-dead', 'the-wicked-the-divine'];
+      var other = other.sort();
+      $(function() {
+        for (i = 0; i<dc.length; i++) {
+          $(".dc-wrapper").append('<a href="cmx.html?name='+dc[i]+'">'+dc[i].replace(/-/g, ' ')+'</a>');
+        }
+        for (i = 0; i<marvel.length; i++) {
+          $(".marvel-wrapper").append('<a href="cmx.html?name='+marvel[i]+'">'+marvel[i].replace(/-/g, ' ')+'</a>');
+        }
+        for (i = 0; i<other.length; i++) {
+          $(".other-wrapper").append('<a href="cmx.html?name='+other[i]+'">'+other[i].replace(/-/g, ' ')+'</a>');
+        }
+      });
+    </script>
   </body>
 </html>
