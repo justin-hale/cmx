@@ -26,10 +26,13 @@
       .slick-next { right: 0; }
       .slick-track .img-wrapper:last-child { background: white; }
       .catalog { position: absolute; top: 0; width: 100%; height: 50px; margin: 0; padding: 0; }
-      .issue-browser { position: absolute; bottom: 0; width: 100%; text-align: center; margin: 0; padding: 0; }
-      .issue { display: inline-block; width: 49%; height: 50px; margin: 0; padding: 0;}
+      .issue { position: absolute; bottom: 0; width: 49%; height: 50px; margin: 0; padding: 0; text-align: center;}
+      .issue.prev { left: 0; }
+      .issue.next { right: 0; }
       .fa { color: white; }
       .loader { display: flex; align-items: center; justify-content: center; position: absolute; top: 0; bottom: 0; width: 100%; }
+      .togl { text-indent: -9999999999px; text-decoration: none; font-size: 18px; text-align: center; }
+      .togl-show { display: flex; background: black; align-items: center; justify-content: center; color: white; font-family: Arial; outline: 2px solid rgba(255,255,255,0.5); outline-offset: -2px; text-indent: 0; }
 /*
       .slick-dots { position: absolute; bottom: 0; width: 100%; text-align: center; margin: 0; padding: 0;}
       .slick-dots li { display: inline-block; margin: 0; padding: 0; }
@@ -44,10 +47,10 @@
       <i class="fa fa-circle-notch fa-5x fa-spin"></i>
     </div>
     <div class="slick-wrapper"></div>
-    <a href="index.html" class="catalog"></a>
+    <a href="index.html" class="togl catalog">Back to Catalog</a>
     <div class="issue-browser">
-      <a class="issue prev"></a>
-      <a class="issue next"></a>
+      <a class="togl issue prev">Previous Issue</a>
+      <a class="togl issue next">Next Issue</a>
     </div>
   </body>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -88,14 +91,17 @@
     var prevLink = location.protocol + '\/\/' + location.host + location.pathname +'?name='+ name+'&vol='+prevVol;
     var nextVol = parseInt(vol)+1;
     var nextLink = location.protocol + '\/\/' + location.host + location.pathname +'?name='+ name+'&vol='+nextVol;
+    $('.img-wrapper').click(function() {
+      $('.togl').toggleClass('togl-show');
+    });
     setTimeout(function(){
       //$('.slick-track .img-wrapper').first().attr('href', prevLink);
       //$('.slick-track .img-wrapper').last().attr('href', nextLink);
       $('.slick-wrapper').slick({
         infinite: false
         ,lazyLoad: true
-        ,prevArrow: '<div class="slick-prev slick-arrow"></div>'
-        ,nextArrow: '<div class="slick-next slick-arrow"></div>'
+        ,prevArrow: '<div class="togl slick-prev slick-arrow">Previous<br/>Page</div>'
+        ,nextArrow: '<div class="togl slick-next slick-arrow">Next<br/>Page</div>'
         ,speed: 100
         //arrows: false
       });
