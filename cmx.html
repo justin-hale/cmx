@@ -30,11 +30,11 @@
       .issue.next { right: 0; }
       .fa { color: white; }
       .loader { display: flex; align-items: center; justify-content: center; position: absolute; top: 0; bottom: 0; width: 100%; }
-/*
-      .togl { text-indent: -9999999999px; text-decoration: none; font-size: 18px; text-align: center; }
-      .togl-show { display: flex; background: black; align-items: center; justify-content: center; color: white; font-family: Arial; outline: 2px dashed rgba(255,255,255,0.5); outline-offset: -2px; text-indent: 0; }
+
+      .togl { display: flex; background: black; align-items: center; justify-content: center; color: white; font-family: Arial; outline: 2px dashed rgba(255,255,255,0.5); outline-offset: -2px; text-decoration: none; font-size: 18px; text-align: center; opacity: 0; cursor: pointer;}
+      .togl-show { opacity: 1; }
       .show-togls { position: absolute; top: 45%; bottom: 45%; left: 45%; right: 45%; z-index:102; }
-*/
+
 /*
       .slick-dots { position: absolute; bottom: 0; width: 100%; text-align: center; margin: 0; padding: 0;}
       .slick-dots li { display: inline-block; margin: 0; padding: 0; }
@@ -49,10 +49,10 @@
       <i class="fa fa-circle-notch fa-5x fa-spin"></i>
     </div>
     <div class="slick-wrapper"></div>
-    <a href="index.html" class="togl catalog"></a>
+    <a href="index.html" class="togl catalog"><i class="fa fa-home"></i>&nbsp;Back to Catalog</a>
     <div class="issue-browser">
-      <a class="togl issue prev"></a>
-      <a class="togl issue next"></a>
+      <a class="togl issue prev"><i class="fa fa-chevron-left"></i>&nbsp;Next Issue</a>
+      <a class="togl issue next">Next Issue&nbsp;<i class="fa fa-chevron-right"></i></a>
     </div>
     <div class="show-togls"></div>
   </body>
@@ -103,8 +103,8 @@
       $('.slick-wrapper').slick({
         infinite: false
         ,lazyLoad: true
-        ,prevArrow: '<div class="slick-prev slick-arrow"></div>'
-        ,nextArrow: '<div class="slick-next slick-arrow"></div>'
+        ,prevArrow: '<div class="togl slick-prev slick-arrow"><i class="fa fa-3x fa-chevron-circle-left"></div>'
+        ,nextArrow: '<div class="togl slick-next slick-arrow"><i class="fa fa-3x fa-chevron-circle-right"></div>'
         ,speed: 100
         //arrows: false
       });
