@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Home</title>
+    <title>Comic Viewer</title>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/latest/slick.css"/>
     <style>
       html, body { margin: 0; padding: 0; background: black; user-select: none; }
@@ -13,11 +13,24 @@
       .slick-arrow { position: absolute; top: 0; bottom: 0; width: 10%; z-index: 100; }
       .slick-prev { left: 0; }
       .slick-next { right: 0; }
-      .slick-track .img-wrapper:last-child { background: #424242; }
+      .slick-track .img-wrapper:last-child { background: white; }
+      .issue-browser { position: absolute; bottom: 0; width: 100%; text-align: center; margin: 0; padding: 0; }
+      .issue { display: inline-block; width: 49%; height: 50px; margin: 0; padding: 0; }
+/*
+      .slick-dots { position: absolute; bottom: 0; width: 100%; text-align: center; margin: 0; padding: 0;}
+      .slick-dots li { display: inline-block; margin: 0; padding: 0; }
+      .slick-dots li { position: relative; display: inline-block; width: 20px; height: 20px; margin: 0 5px; padding: 0; cursor: pointer; }
+      .slick-dots li button { font-size: 0; line-height: 0; display: block; width: 20px; height: 20px; padding: 5px; cursor: pointer; color: transparent; border: 0; outline: none; background: transparent; }
+      .slick-dots li button::before { font-size: 6px; line-height: 20px; position: absolute; width: 10px; height: 10px; border-radius: 256px; background: rgba(0,0,0,0.5); border: 2px solid rgba(255,255,255,0.5); top: 0; left: 0; content: ''; text-align: center; }
+*/
     </style>
   </head>
   <body>
     <div class="slick-wrapper"></div>
+    <div class="issue-browser">
+      <a class="issue prev"></a>
+      <a class="issue next"></a>
+    </div>
   </body>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/latest/slick.min.js"></script>
@@ -38,6 +51,10 @@
     var step;
     var name = getUrlParameter('name');
     var vol = getUrlParameter('vol');
+    console.log(vol);
+    if (vol == undefined) {
+      var vol = prompt('Issue Number:', '1');
+    }
     step = 1;
     while (step < 60) {
       imgsrc = 'https://readcomics.io/images/manga/'+name+'/'+vol+'/'+step+'.jpg';
@@ -51,17 +68,20 @@
     var prevLink = location.protocol + '\/\/' + location.host + location.pathname +'?name='+ name+'&vol='+prevVol;
     var nextVol = parseInt(vol)+1;
     var nextLink = location.protocol + '\/\/' + location.host + location.pathname +'?name='+ name+'&vol='+nextVol;
-    $('.slick-wrapper').slick({
-      infinite: false
-      ,lazyLoad: true
-      ,prevArrow: '<div class="slick-prev slick-arrow"></div>'
-      ,nextArrow: '<div class="slick-next slick-arrow"></div>'
-      //arrows: false
-    });
     setTimeout(function(){
-      $('.slick-track .img-wrapper').first().attr('href', prevLink);
-      $('.slick-track .img-wrapper').last().attr('href', nextLink);
-    }, 2000);
+      //$('.slick-track .img-wrapper').first().attr('href', prevLink);
+      //$('.slick-track .img-wrapper').last().attr('href', nextLink);
+      $('.slick-wrapper').slick({
+        infinite: false
+        ,lazyLoad: true
+        ,prevArrow: '<div class="slick-prev slick-arrow"></div>'
+        ,nextArrow: '<div class="slick-next slick-arrow"></div>'
+        ,speed: 100
+        //arrows: false
+      });
+      $('.issue.prev').attr('href', prevLink);
+      $('.issue.next').attr('href', nextLink);
+    }, 1000);
   });
   </script>
 </html>

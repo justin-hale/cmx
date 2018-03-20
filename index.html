@@ -1,8 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head></head>
+  <head>
+    <title>Comic List</title>
+    <style>
+      h1, h2 { font-family: Arial; margin: 30px 5px 10px; }
+      a { background: #424242; color: white; padding: 10px 20px; text-decoration: none; font-family: Arial; margin: 5px; display: inline-block; border-radius: 4px;}
+      .input { border: 1px solid #424242; border-radius: 4px 0 0 4px; padding: 10px 20px; font-family: Arial; margin: 5px; margin-right: 0; font-size: 16px; flex: 1 1 auto; }
+      .button { background: #424242; padding: 10px 20px 11px; margin: 5px; margin-left: -2px; border-radius: 0 4px 4px 0; border: 0; color: white; font-size: 16px; }
+      form { display: flex; width: 100%; align-items: stretch; }
+    </style>
+  </head>
   <body>
-    <p><a href="cmx.html?name=the-flash-2016&vol=1">The Flash (2016)</a></p>
-    <p><a href="cmx.html?name=dark-nights-metal-2017&vol=1">Dark Knights: Metal (2017)</a></p>
+    <h1>Comic Book Index</h1>
+    <h2>Custom</h2>
+     <form action="/cmx.html" method="get">
+       <input class="input" type="text" name="name" placeholder="the-flash-2016"><input class="button" type="submit" value="Read!">
+     </form>
+
+    <h2>DC Comics</h2>
+    <a href="cmx.html?name=the-flash-2016">The Flash 2016</a>
+    <a href="cmx.html?name=dark-nights-metal-2017">Dark Knights: Metal 2017</a>
+    <a href="cmx.html?name=teen-titans-2016">Teen Titans 2016</a>
+    <a href="cmx.html?name=titans-2016">Titans 2016</a>
+
+    <h2>Marvel</h2>
+    <a href="cmx.html?name=all-new-wolverine-2016">All-New Wolverine 2016</a>
+    <a href="cmx.html?name=spider-man-2016">Spider-Man 2016</a>
+    <a href="cmx.html?name=spider-man-deadpool-2016">Spider-Man/Deadpool 2016</a>
+
+    <h2>Other</h2>
+    <a href="cmx.html?name=saga">Saga</a>
+    <a href="cmx.html?name=the-walking-dead">The Walking Dead</a>
+
   </body>
 </html>
