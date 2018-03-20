@@ -78,7 +78,7 @@
     step = 1;
     while (step < 60) {
       imgsrc = 'https://readcomics.io/images/manga/'+name+'/'+vol+'/'+step+'.jpg';
-      $(".slick-wrapper").append('<a class="img-wrapper"><img src="'+imgsrc+'"/></a>');
+      $(".slick-wrapper").append('<div class="img-wrapper"><img src="'+imgsrc+'"/></div>');
       $(".img-wrapper img").on('error', function() {
         $(this).parent().remove();
       });
