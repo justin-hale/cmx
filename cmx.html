@@ -49,7 +49,7 @@
       }
     };
     var step;
-    var name = getUrlParameter('name');
+    var name = getUrlParameter('name').toLowerCase();
     var vol = getUrlParameter('vol');
     console.log(vol);
     if (vol == undefined) {
