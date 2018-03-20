@@ -102,6 +102,10 @@
       $('.issue.prev').attr('href', prevLink);
       $('.issue.next').attr('href', nextLink);
     }, 1000);
+    $("a").click(function (event) {
+      event.preventDefault();
+      window.location = $(this).attr("href");
+    });
   });
   </script>
 </html>

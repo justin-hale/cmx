@@ -56,6 +56,10 @@
         for (i = 0; i<other.length; i++) {
           $(".other-wrapper").append('<a href="cmx.html?name='+other[i]+'">'+other[i].replace(/-/g, ' ')+'</a>');
         }
+        $("a").click(function (event) {
+          event.preventDefault();
+          window.location = $(this).attr("href");
+        });
       });
     </script>
   </body>
