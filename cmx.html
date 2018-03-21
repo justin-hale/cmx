@@ -107,8 +107,15 @@
       }
     });
     $('.img-wrapper img').click(function(){
-      $(".show-togls").toggleClass('show');
+      if ($('.togl').hasClass('togl-show')) {
+        $(".show-togls").removeClass('show');
+        $('.togl').removeClass('togl-show');
+      } else {
+        $(".show-togls").toggleClass('show');
+      }
+
     });
+
     setTimeout(function(){
       //$('.slick-track .img-wrapper').first().attr('href', prevLink);
       //$('.slick-track .img-wrapper').last().attr('href', nextLink);
