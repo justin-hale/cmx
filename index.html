@@ -12,7 +12,7 @@
     <link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-      h1, h2 { font-family: Arial; margin: 30px 5px 10px; color: #424242; }
+      h1, h2 { font-family: Arial; margin: 30px 5px 10px; color: #424242; text-transform: capitalize; }
       p { font-family: Arial; margin: 5px 10px; }
       h2 { border-bottom: 2px solid #424242; }
       a { display: block; color: black; text-decoration: none; padding: 10px; font-family: Arial; font-size: 16px; text-transform: capitalize; }
@@ -31,7 +31,7 @@
      <form action="cmx.html" method="get">
        <input class="input" type="text" name="name" placeholder="the-flash-2016"><input class="button" type="submit" value="Read!">
      </form>
-
+<!--
     <h2>DC Comics</h2>
     <div class="dc-wrapper"></div>
 
@@ -40,25 +40,28 @@
 
     <h2>Other</h2>
     <div class="other-wrapper"></div>
-
+-->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
-      var dc = ['the-flash-2016', 'dark-nights-metal-2017', 'teen-titans-2016', 'titans-2016', 'supergirl-2016', 'wonder-woman-2016', 'suicide-squad-2016', 'hal-jordan-and-the-green-lantern-corps-2016', 'justice-league-of-america-2017'];
-      var dc = dc.sort();
-      var marvel = ['all-new-wolverine-2016', 'deadpool-2016', 'doctor-strange-2015', 'spider-man-2016', 'spider-man-deadpool-2016', 'daredevil-2016', 'old-man-logan', 'star-wars', 'darth-vader-2017'];
-      var marvel = marvel.sort();
-      var other = ['saga', 'the-walking-dead', 'the-wicked-the-divine'];
-      var other = other.sort();
+      function sortResults(obj, prop) {
+          obj.sort(function(a, b) {
+          return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
+        });
+      }
       $(function() {
-        for (i = 0; i<dc.length; i++) {
-          $(".dc-wrapper").append('<a href="cmx.html?name='+dc[i]+'">'+dc[i].replace(/-/g, ' ')+'</a>');
-        }
-        for (i = 0; i<marvel.length; i++) {
-          $(".marvel-wrapper").append('<a href="cmx.html?name='+marvel[i]+'">'+marvel[i].replace(/-/g, ' ')+'</a>');
-        }
-        for (i = 0; i<other.length; i++) {
-          $(".other-wrapper").append('<a href="cmx.html?name='+other[i]+'">'+other[i].replace(/-/g, ' ')+'</a>');
-        }
+        $.getJSON( "pull.json", function( data ) {
+          sortResults(data, 'name');
+          sortResults(data, 'publisher');
+          $.each( data, function( i, obj ) {
+            if ($('.'+obj.publisher+'-wrapper').length) {
+              console.log('.'+obj.publisher+'-wrapper exists');
+            } else {
+              $('body').append('<h2>'+obj.publisher.replace(/-/g, ' ')+'</h2>');
+              $('body').append('<div class="'+obj.publisher+'-wrapper"></div>');
+            }
+            $('.'+obj.publisher+'-wrapper').append('<a href="cmx.html?name='+obj.name+'">'+obj.name.replace(/-/g, ' ')+'</a>');
+          });
+        });
         $("a").click(function (event) {
           event.preventDefault();
           window.location = $(this).attr("href");

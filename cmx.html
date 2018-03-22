@@ -30,21 +30,11 @@
       .issue.next { right: 0; }
       .fa { color: white; }
       .loader { display: flex; align-items: center; justify-content: center; position: absolute; top: 0; bottom: 0; width: 100%; }
-
       .togl { display: flex; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; color: white; font-family: Arial; outline: 2px dashed rgba(255,255,255,0.25); outline-offset: -4px; text-decoration: none; font-size: 18px; text-align: center; opacity: 0; cursor: pointer;}
       .togl-show { opacity: 1; }
       .show-togls { position: absolute; top: 45%; bottom: 45%; left: 45%; right: 45%; z-index:102; border-radius: 256px; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; opacity: 0; }
-      /*.show-togls:hover { opacity: 1; }*/
       .show-togls.show { opacity: 1; }
       .show-togls .fa { color: rgba(255,255,255,0.5); }
-
-/*
-      .slick-dots { position: absolute; bottom: 0; width: 100%; text-align: center; margin: 0; padding: 0;}
-      .slick-dots li { display: inline-block; margin: 0; padding: 0; }
-      .slick-dots li { position: relative; display: inline-block; width: 20px; height: 20px; margin: 0 5px; padding: 0; cursor: pointer; }
-      .slick-dots li button { font-size: 0; line-height: 0; display: block; width: 20px; height: 20px; padding: 5px; cursor: pointer; color: transparent; border: 0; outline: none; background: transparent; }
-      .slick-dots li button::before { font-size: 6px; line-height: 20px; position: absolute; width: 10px; height: 10px; border-radius: 256px; background: rgba(0,0,0,0.5); border: 2px solid rgba(255,255,255,0.5); top: 0; left: 0; content: ''; text-align: center; }
-*/
     </style>
   </head>
   <body>
@@ -82,7 +72,10 @@
     var vol = getUrlParameter('vol');
     console.log(vol);
     if (vol == undefined) {
-      var vol = prompt('Issue Number:', '1');
+      vol = prompt('Issue Number:', '1');
+      if (vol == undefined) {
+        window.history.back();
+      }
     }
     step = 1;
     while (step < 60) {
